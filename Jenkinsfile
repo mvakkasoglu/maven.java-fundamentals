@@ -15,8 +15,5 @@ pipeline {
         }
       }
     }
-withDockerContainer('myfirstimage') {
-    // some block
-}
   }
 }
