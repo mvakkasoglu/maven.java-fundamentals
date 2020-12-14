@@ -1,10 +1,8 @@
 pipeline {
-  agent {
-        docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
+  agent { docker { image 'maven:3.3.3' } }
             }
   stages {
+  
       stage('Stage 1') {
           steps {
             script {
@@ -12,6 +10,11 @@ pipeline {
         }
       }
       }
+      stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
   stage('Compile Package') {
       steps {
         script {
