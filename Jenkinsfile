@@ -1,6 +1,6 @@
 pipeline {
     agent { docker {
-            image 'adoptopenjdk:8'
+            image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2' 
             } }
 
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script{
                 // Get some code from a GitHub repository
-                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                git 'https://github.com/mvakkasoglu/maven.java-fundamentals.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn test"
