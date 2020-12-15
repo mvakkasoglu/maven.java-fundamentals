@@ -21,4 +21,3 @@ COPY settings-docker.xml /usr/share/maven/ref/
 
 ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 CMD ["mvn"]
-CMD ["java","-jar","java-fundamentals-1.0.jar"]
