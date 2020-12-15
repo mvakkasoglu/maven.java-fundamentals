@@ -1,5 +1,8 @@
 pipeline {
-    agent { docker { image 'maven:3.3.3' } }
+    agent { docker {
+            image 'maven:3-alpine' 
+            args '-v /root/.m2:/root/.m2' 
+            } }
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
