@@ -1,6 +1,6 @@
 pipeline {
     agent { docker {
-            image 'maven:3-alpine' 
+            image ''maven:3.5.0-jdk-8'' 
             args '-v /root/.m2:/root/.m2' 
             } }
 
@@ -10,6 +10,15 @@ pipeline {
     }
 
     stages {
+         stage('Compile Package') {
+             steps {
+                script {
+                    echo 'Compile Package'
+                    def mvnHome = tool name: 'maven3.6.3', type: 'maven'
+                    sh "${mvnHome}/bin/mvn/package"
+          }
+      }
+    }
         stage('Build') {
             steps {
                 script{
@@ -23,6 +32,7 @@ pipeline {
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
                 }
             }
+            
 
             post {
                 // If Maven was able to run the tests, even if some of the test
