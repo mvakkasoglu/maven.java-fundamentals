@@ -1,10 +1,6 @@
 pipeline {
-  agent { 
-      docker { 
-          image 'maven:3.3.3' 
-   } 
-  }
-            }
+    agent { docker { image 'maven:3.3.3' } }}
+
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "M3"
@@ -14,9 +10,9 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/mvakkasoglu/maven.java-fundamentals.git'
+                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
 
-                //Run Maven on a Unix agent.
+                // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // To run Maven on a Windows agent, use
