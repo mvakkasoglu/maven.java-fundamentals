@@ -1,40 +1,27 @@
 pipeline {
-    agent { docker {
-            image 'maven:3-alpine'
+  agent { docker {
+            image 'maven:3.6.3-jdk-8'
             args '-v /root/.m2:/root/.m2' 
             } }
-
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "M3"
-    }
-
-    stages {
-         stage('Compile Package') {
-             steps {
-                script {
-                    echo 'Compile Package'
-                    def mvnHome = tool name: 'maven3.6.3', type: 'maven'
-                    sh "${mvnHome}/bin/mvn/package"
+  stages {
+  stage('Stage 1') {
+      steps {
+        script {
+          echo 'Stage 1'
+        }
+      }
+      }
+  stage('Compile Package') {
+      steps {
+        script {
+         echo 'Compile Package'
+         def mvnHome = tool name: 'maven3.6.3', type: 'maven'
+         sh "${mvnHome}/bin/mvn package -Dmaven.test.failure.ignore=true"
           }
       }
     }
-        stage('Build') {
-            steps {
-                script{
-                // Get some code from a GitHub repository
-                git 'https://github.com/mvakkasoglu/maven.java-fundamentals.git'
-
-                // Run Maven on a Unix agent.
-                sh "mvn test"
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
-                }
-            }
-            
-
-            post {
+  }
+  post {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 success {
@@ -42,7 +29,4 @@ pipeline {
                     archiveArtifacts 'target/*.jar'
                 }
             }
-        }
-    }
-
-}
+} 
