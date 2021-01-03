@@ -1,15 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-        }
-    }
+    agent any
     stages {
         stage('SCM Checkout') {
             steps {
                 script{
-                sh 'git clone https://github.com/JasonAutomation/maven.java-fundamentals'
+                sh 'git clone https://github.com/mvakkasoglu/maven.java-fundamentals.git'
                 }
             }
         }
