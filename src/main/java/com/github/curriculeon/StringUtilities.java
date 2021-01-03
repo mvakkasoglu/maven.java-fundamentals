@@ -1,7 +1,7 @@
-package com.github.curriculeon;
+ package com.github.curriculeon;
 
 /**
- * Created by Leon Hunter on 6/14/17.editing to trigger build jenkins.
+ * Created by Leon Hunter on 6/14/17. Editing to trigger build jenkins.
  */
 public class StringUtilities {
     /**
