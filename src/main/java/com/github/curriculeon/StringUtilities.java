@@ -1,7 +1,7 @@
 package com.github.curriculeon;
 
 /**
- * Created by Leon Hunter on 6/14/17.
+ * Created by Leon Hunter on 6/14/17.editing to trigger push.
  */
 public class StringUtilities {
     /**
